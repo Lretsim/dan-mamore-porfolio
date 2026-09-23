@@ -1,0 +1,1137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Dan Mamore — Web & Software Solutions portfolio. Practical, responsive and user-focused digital solutions.">
+  <title>Dan Mamore | Web & Software Solutions</title>
+
+  <style>
+    :root{
+      --bg:#07111f;
+      --bg2:#0b1728;
+      --card:rgba(16,31,51,.72);
+      --card-solid:#101f33;
+      --line:rgba(148,163,184,.16);
+      --text:#f8fafc;
+      --muted:#9fb0c5;
+      --accent:#63e6be;
+      --accent2:#60a5fa;
+      --accent3:#a78bfa;
+      --shadow:0 24px 70px rgba(0,0,0,.30);
+      --radius:24px;
+      --max:1180px;
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      background:
+        radial-gradient(circle at 10% 0%,rgba(96,165,250,.12),transparent 28rem),
+        radial-gradient(circle at 90% 15%,rgba(167,139,250,.10),transparent 30rem),
+        linear-gradient(180deg,var(--bg),#050b14 100%);
+      color:var(--text);
+      line-height:1.7;
+      overflow-x:hidden;
+    }
+    a{color:inherit;text-decoration:none}
+    button{font:inherit}
+    .container{width:min(calc(100% - 40px),var(--max));margin:auto}
+
+    /* NAV */
+    nav{
+      position:fixed;top:0;left:0;right:0;z-index:100;
+      background:rgba(7,17,31,.72);
+      backdrop-filter:blur(18px);
+      border-bottom:1px solid rgba(255,255,255,.06);
+    }
+    .nav-inner{height:76px;display:flex;align-items:center;justify-content:space-between}
+    .brand{font-weight:800;letter-spacing:-.03em;font-size:1.05rem}
+    .brand span{color:var(--accent)}
+    .nav-links{display:flex;gap:28px;align-items:center}
+    .nav-links a{color:#c7d2e0;font-size:.92rem;transition:.2s}
+    .nav-links a:hover{color:var(--text)}
+    .nav-cta{
+      padding:10px 16px;border:1px solid rgba(99,230,190,.3);
+      border-radius:999px;background:rgba(99,230,190,.08);
+      color:var(--accent)!important;
+    }
+
+    /* HERO */
+    .hero{padding:160px 0 100px;position:relative}
+    .hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:70px;align-items:center}
+    .eyebrow{
+      display:inline-flex;align-items:center;gap:9px;
+      color:var(--accent);font-size:.78rem;font-weight:800;
+      letter-spacing:.15em;text-transform:uppercase;margin-bottom:22px;
+    }
+    .eyebrow:before{content:"";width:30px;height:1px;background:var(--accent)}
+    h1{
+      font-size:clamp(3rem,7vw,5.8rem);
+      line-height:.98;letter-spacing:-.065em;
+      max-width:780px;
+    }
+    h1 .gradient{
+      background:linear-gradient(90deg,var(--accent),var(--accent2),var(--accent3));
+      -webkit-background-clip:text;background-clip:text;color:transparent;
+    }
+    .hero-copy{max-width:680px;color:var(--muted);font-size:1.08rem;margin-top:26px}
+    .hero-actions{display:flex;gap:13px;flex-wrap:wrap;margin-top:34px}
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;
+      padding:13px 20px;border-radius:12px;font-weight:750;
+      border:1px solid var(--line);transition:.2s;cursor:pointer;
+    }
+    .btn-primary{background:var(--text);color:#08111e}
+    .btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(255,255,255,.12)}
+    .btn-ghost{background:rgba(255,255,255,.035);color:var(--text)}
+    .btn-ghost:hover{background:rgba(255,255,255,.07)}
+
+    .code-card{
+      border:1px solid var(--line);background:linear-gradient(145deg,rgba(18,36,58,.9),rgba(8,19,33,.9));
+      border-radius:26px;box-shadow:var(--shadow);overflow:hidden;
+    }
+    .code-top{height:48px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:7px;padding:0 18px}
+    .dot{width:9px;height:9px;border-radius:50%;background:#64748b}
+    .code-title{margin-left:8px;color:#73859b;font-size:.76rem}
+    .code-body{padding:28px;font-family:"SFMono-Regular",Consolas,monospace;font-size:.82rem;color:#cbd5e1}
+    .code-line{margin:7px 0;white-space:nowrap}
+    .k{color:#c084fc}.s{color:#86efac}.p{color:#60a5fa}.c{color:#64748b}
+    .availability{display:flex;align-items:center;gap:9px;margin-top:24px;color:#b9c8d9;font-family:inherit}
+    .pulse{width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 6px rgba(99,230,190,.08)}
+
+    /* SECTIONS */
+    section{padding:100px 0}
+    .section-head{max-width:720px;margin-bottom:45px}
+    .section-kicker{color:var(--accent);font-size:.74rem;font-weight:800;letter-spacing:.15em;text-transform:uppercase;margin-bottom:10px}
+    h2{font-size:clamp(2rem,4vw,3.2rem);line-height:1.08;letter-spacing:-.045em}
+    .section-head p{color:var(--muted);margin-top:14px}
+
+    /* SERVICES */
+    .services{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+    .service{
+      padding:26px;border:1px solid var(--line);border-radius:20px;
+      background:rgba(255,255,255,.025);transition:.25s;
+    }
+    .service:hover{transform:translateY(-5px);border-color:rgba(99,230,190,.28);background:rgba(255,255,255,.045)}
+    .service-number{color:#667891;font-size:.78rem;font-weight:800}
+    .service h3{margin:32px 0 8px;font-size:1.08rem}
+    .service p{color:var(--muted);font-size:.9rem}
+
+    /* PROJECTS */
+    .projects{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+    .project{
+      padding:28px;border:1px solid var(--line);border-radius:22px;
+      background:linear-gradient(145deg,rgba(17,33,54,.78),rgba(8,18,31,.78));
+      position:relative;overflow:hidden;
+    }
+    .project:after{
+      content:"";position:absolute;width:180px;height:180px;border-radius:50%;
+      right:-100px;top:-100px;background:rgba(96,165,250,.08);filter:blur(2px)
+    }
+    .project-index{font-size:.74rem;color:#71839a;font-weight:800;letter-spacing:.1em}
+    .project h3{font-size:1.35rem;margin:10px 0 9px;letter-spacing:-.02em}
+    .project p{color:var(--muted);font-size:.92rem}
+    .tags{display:flex;gap:7px;flex-wrap:wrap;margin-top:20px}
+    .tag{font-size:.7rem;color:#b9c8d9;border:1px solid var(--line);padding:5px 9px;border-radius:999px;background:rgba(255,255,255,.025)}
+
+    /* ABOUT */
+    .about-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:22px;align-items:stretch}
+    .about-profile,.about-content{
+      border:1px solid var(--line);border-radius:24px;background:rgba(255,255,255,.025)
+    }
+    .about-profile{padding:32px;display:flex;flex-direction:column;justify-content:space-between;min-height:390px}
+    .profile-mark{
+      width:68px;height:68px;border-radius:20px;display:grid;place-items:center;
+      background:linear-gradient(135deg,rgba(99,230,190,.16),rgba(96,165,250,.16));
+      border:1px solid rgba(99,230,190,.2);font-size:1.3rem;font-weight:900;color:var(--accent)
+    }
+    .profile-name{font-size:1.5rem;font-weight:800;margin-top:24px}
+    .profile-role{color:var(--accent);font-size:.9rem;margin-top:5px}
+    .profile-meta{color:#8395aa;font-size:.85rem;margin-top:18px}
+    .about-content{padding:40px}
+    .about-content h3{font-size:2rem;line-height:1.15;letter-spacing:-.035em;margin-bottom:18px}
+    .about-content h3 span{color:var(--accent)}
+    .about-content p{color:var(--muted);margin-bottom:15px}
+    .principles{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:26px}
+    .principle{padding:15px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.025)}
+    .principle strong{display:block;font-size:.88rem;margin-bottom:3px}
+    .principle span{font-size:.78rem;color:#8294a9}
+    .stack{display:flex;gap:8px;flex-wrap:wrap;margin-top:25px}
+
+    /* PROCESS */
+    .process-section{text-align:center}
+    .process-head{max-width:700px;margin:0 auto 46px}
+    .process-head p{color:var(--muted);margin-top:13px}
+    .process-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;text-align:left}
+    .step{
+      position:relative;padding:28px 22px;border:1px solid var(--line);border-radius:20px;
+      background:rgba(255,255,255,.025)
+    }
+    .step-no{font-size:.74rem;font-weight:900;color:var(--accent);letter-spacing:.12em}
+    .step h3{font-size:1rem;margin:22px 0 7px}
+    .step p{font-size:.84rem;color:var(--muted)}
+
+    /* CONTACT */
+    .contact-box{
+      border:1px solid rgba(99,230,190,.18);border-radius:28px;padding:50px;
+      background:
+        radial-gradient(circle at 85% 20%,rgba(96,165,250,.12),transparent 20rem),
+        linear-gradient(145deg,rgba(19,39,61,.88),rgba(7,17,30,.9));
+      display:grid;grid-template-columns:1fr .95fr;gap:50px;align-items:center;
+    }
+    .contact-box h2{max-width:600px}
+    .contact-box .lead{color:var(--muted);margin-top:15px;max-width:550px}
+    .contact-list{display:grid;gap:10px}
+    .contact-item{
+      display:flex;align-items:center;justify-content:space-between;gap:15px;
+      padding:15px 17px;border:1px solid var(--line);border-radius:14px;
+      background:rgba(255,255,255,.025);transition:.2s
+    }
+    .contact-item:hover{border-color:rgba(99,230,190,.28);transform:translateX(2px)}
+    .contact-label{font-size:.72rem;color:#71839a;text-transform:uppercase;letter-spacing:.08em}
+    .contact-value{font-size:.88rem;font-weight:700}
+    .viber{color:#a78bfa}.whatsapp{color:#63e6be}.email{color:#60a5fa}
+
+    footer{padding:35px 0 45px;border-top:1px solid rgba(255,255,255,.05);color:#65778d;font-size:.8rem}
+    .footer-inner{display:flex;justify-content:space-between;gap:20px}
+
+    /* MODAL */
+    .modal{position:fixed;inset:0;background:rgba(0,0,0,.65);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;padding:20px;z-index:200}
+    .modal.open{display:flex}
+    .modal-card{width:min(420px,100%);background:#0d1b2d;border:1px solid var(--line);border-radius:22px;padding:28px;box-shadow:var(--shadow)}
+    .modal-card h3{font-size:1.3rem}
+    .modal-card p{color:var(--muted);font-size:.9rem;margin:8px 0 20px}
+    .viber-number{padding:15px;border-radius:12px;background:rgba(167,139,250,.08);border:1px solid rgba(167,139,250,.2);font-size:1.1rem;font-weight:800;text-align:center;margin-bottom:15px}
+    .modal-actions{display:flex;gap:10px}
+    .modal-actions .btn{flex:1}
+
+
+    /* RESPONSIVE ENHANCEMENTS */
+    .menu-toggle{
+      display:none;width:44px;height:44px;padding:9px;
+      border:1px solid var(--line);border-radius:12px;
+      background:rgba(255,255,255,.035);cursor:pointer;
+      flex-direction:column;justify-content:center;gap:5px;
+    }
+    .menu-toggle span{display:block;width:100%;height:2px;background:#dce7f3;border-radius:3px}
+    .code-card,.project,.service,.step,.about-profile,.about-content,.contact-box{min-width:0}
+    .project p,.service p,.step p,.about-content p,.contact-value{
+      overflow-wrap:anywhere;
+    }
+    img,video,iframe{max-width:100%;height:auto}
+
+    @media (width <= 980px){
+      .container{width:min(calc(100% - 32px),var(--max))}
+      .hero-grid{grid-template-columns:1fr;gap:42px}
+      .hero{padding-top:125px}
+      .services{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .process-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .about-grid,.contact-box{grid-template-columns:1fr}
+      .contact-box{gap:35px}
+      .code-body{overflow-x:auto}
+    }
+
+    @media (width <= 720px){
+      .container{width:min(calc(100% - 28px),var(--max))}
+      .nav-inner{height:68px}
+      .menu-toggle{display:flex}
+      .nav-links{
+        position:absolute;left:14px;right:14px;top:76px;
+        display:none;flex-direction:column;align-items:stretch;gap:4px;
+        padding:10px;border:1px solid var(--line);border-radius:18px;
+        background:rgba(8,20,35,.97);backdrop-filter:blur(20px);
+        box-shadow:0 20px 50px rgba(0,0,0,.35);
+      }
+      .nav-links.open{display:flex}
+      .nav-links a{padding:12px 14px;border-radius:10px}
+      .nav-links a:hover{background:rgba(255,255,255,.05)}
+      .nav-cta{text-align:center;margin-top:4px}
+      .hero{padding:105px 0 65px}
+      h1{font-size:clamp(2.65rem,13vw,4rem);line-height:1.01}
+      .hero-copy{font-size:1rem}
+      .hero-actions{flex-direction:column;align-items:stretch}
+      .hero-actions .btn{width:100%}
+      section{padding:65px 0}
+      .section-head{margin-bottom:32px}
+      h2{font-size:clamp(1.9rem,9vw,2.6rem)}
+      .services,.projects,.process-grid,.principles{grid-template-columns:1fr}
+      .service,.project,.step{padding:23px}
+      .about-profile,.about-content,.contact-box{padding:24px}
+      .about-content h3{font-size:1.7rem}
+      .contact-item{align-items:flex-start}
+      .contact-value{font-size:.82rem}
+      .code-body{padding:22px;font-size:.72rem}
+      .code-line{white-space:pre-wrap;overflow-wrap:anywhere}
+      .footer-inner{text-align:center;align-items:center}
+    }
+
+    @media (width <= 400px){
+      .container{width:calc(100% - 22px)}
+      .brand{font-size:.98rem}
+      .hero{padding-top:98px}
+      h1{font-size:2.5rem}
+      .eyebrow{font-size:.68rem;letter-spacing:.11em}
+      .section-kicker{font-size:.68rem}
+      .contact-item{padding:13px}
+      .contact-label{font-size:.64rem}
+      .contact-value{font-size:.76rem}
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      html{scroll-behavior:auto}
+      *,*::before,*::after{transition:none!important;animation:none!important}
+    }
+
+    @media(max-width:980px){
+      .hero-grid,.about-grid,.contact-box{grid-template-columns:1fr}
+      .services{grid-template-columns:repeat(2,1fr)}
+      .process-grid{grid-template-columns:repeat(2,1fr)}
+      .hero{padding-top:130px}
+    }
+    @media(max-width:700px){
+      .container{width:min(calc(100% - 28px),var(--max))}
+      .hero{padding:120px 0 75px}
+      h1{font-size:3.25rem}
+      section{padding:75px 0}
+      .services,.projects,.process-grid,.principles{grid-template-columns:1fr}
+      .about-content,.about-profile,.contact-box{padding:27px}
+      .contact-box{gap:30px}
+      .footer-inner{flex-direction:column}
+      .code-body{overflow:auto}
+    }
+  
+    /* Project images */
+    .project-image {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      border-radius: 16px;
+      margin-bottom: 1.25rem;
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.08);
+    }
+
+    .project-image img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      transition: transform .35s ease;
+    }
+
+    .project-card:hover .project-image img {
+      transform: scale(1.03);
+    }
+
+    @media (max-width: 600px) {
+      .project-image {
+        aspect-ratio: 16 / 10;
+        border-radius: 12px;
+      }
+    }
+
+  
+    /* Click-to-enlarge project image lightbox */
+    .project-image-button {
+      appearance: none;
+      -webkit-appearance: none;
+      font: inherit;
+      color: inherit;
+      cursor: zoom-in;
+      padding: 0;
+      border: 1px solid rgba(255,255,255,.08);
+      text-align: inherit;
+      position: relative;
+      display: block;
+      width: 100%;
+    }
+
+    .project-image-button::after {
+      content: "Click to enlarge";
+      position: absolute;
+      right: 12px;
+      bottom: 12px;
+      padding: 6px 9px;
+      border-radius: 999px;
+      background: rgba(0,0,0,.65);
+      color: #fff;
+      font-size: .72rem;
+      letter-spacing: .02em;
+      opacity: 0;
+      transform: translateY(4px);
+      transition: opacity .2s ease, transform .2s ease;
+      pointer-events: none;
+    }
+
+    .project-image-button:hover::after,
+    .project-image-button:focus-visible::after {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .project-image-button:focus-visible {
+      outline: 2px solid currentColor;
+      outline-offset: 3px;
+    }
+
+    .project-lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 30px;
+      background: rgba(0,0,0,.88);
+      backdrop-filter: blur(7px);
+    }
+
+    .project-lightbox.is-open {
+      display: flex;
+    }
+
+    .project-lightbox-content {
+      position: relative;
+      max-width: min(1200px, 94vw);
+      max-height: 92vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .project-lightbox-image {
+      display: block;
+      max-width: 94vw;
+      max-height: 82vh;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      border-radius: 14px;
+      box-shadow: 0 20px 70px rgba(0,0,0,.5);
+    }
+
+    .project-lightbox-title {
+      margin: 0;
+      color: #fff;
+      text-align: center;
+      font-size: 1rem;
+    }
+
+    .project-lightbox-close {
+      position: fixed;
+      top: 18px;
+      right: 22px;
+      width: 44px;
+      height: 44px;
+      border: 0;
+      border-radius: 50%;
+      background: rgba(255,255,255,.14);
+      color: #fff;
+      font-size: 28px;
+      line-height: 1;
+      cursor: pointer;
+      display: grid;
+      place-items: center;
+      transition: background .2s ease, transform .2s ease;
+    }
+
+    .project-lightbox-close:hover {
+      background: rgba(255,255,255,.25);
+      transform: scale(1.05);
+    }
+
+    .project-lightbox-close:focus-visible {
+      outline: 2px solid #fff;
+      outline-offset: 3px;
+    }
+
+    body.lightbox-open {
+      overflow: hidden;
+    }
+
+    @media (max-width: 600px) {
+      .project-lightbox {
+        padding: 18px;
+      }
+
+      .project-lightbox-image {
+        max-width: 96vw;
+        max-height: 76vh;
+        border-radius: 10px;
+      }
+
+      .project-lightbox-close {
+        top: 12px;
+        right: 12px;
+      }
+
+      .project-image-button::after {
+        display: none;
+      }
+    }
+
+  
+    /* Clickable project image lightbox */
+    .project-image-button {
+      appearance: none;
+      -webkit-appearance: none;
+      padding: 0;
+      color: inherit;
+      font: inherit;
+      text-align: inherit;
+      cursor: zoom-in;
+      position: relative;
+    }
+
+    .project-image-button::after {
+      content: "Click to enlarge";
+      position: absolute;
+      right: 12px;
+      bottom: 12px;
+      padding: 7px 10px;
+      border-radius: 999px;
+      background: rgba(0,0,0,.68);
+      color: #fff;
+      font-size: .72rem;
+      font-weight: 600;
+      letter-spacing: .02em;
+      opacity: 0;
+      transform: translateY(4px);
+      transition: opacity .2s ease, transform .2s ease;
+      pointer-events: none;
+    }
+
+    .project-image-button:hover::after,
+    .project-image-button:focus-visible::after {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .project-image-button:focus-visible {
+      outline: 2px solid currentColor;
+      outline-offset: 4px;
+    }
+
+    .image-lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 30px;
+      background: rgba(0, 0, 0, .88);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity .2s ease, visibility .2s ease;
+    }
+
+    .image-lightbox.is-open {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .image-lightbox img {
+      display: block;
+      max-width: min(92vw, 1400px);
+      max-height: 88vh;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      border-radius: 12px;
+      box-shadow: 0 20px 70px rgba(0,0,0,.55);
+      transform: scale(.96);
+      transition: transform .22s ease;
+    }
+
+    .image-lightbox.is-open img {
+      transform: scale(1);
+    }
+
+    .image-lightbox-close {
+      position: fixed;
+      top: 18px;
+      right: 22px;
+      width: 46px;
+      height: 46px;
+      border: 0;
+      border-radius: 50%;
+      background: rgba(255,255,255,.12);
+      color: #fff;
+      font-size: 30px;
+      line-height: 1;
+      cursor: pointer;
+      display: grid;
+      place-items: center;
+      transition: background .2s ease, transform .2s ease;
+    }
+
+    .image-lightbox-close:hover {
+      background: rgba(255,255,255,.22);
+      transform: scale(1.05);
+    }
+
+    .image-lightbox-close:focus-visible {
+      outline: 2px solid #fff;
+      outline-offset: 3px;
+    }
+
+    .image-lightbox-caption {
+      position: fixed;
+      left: 50%;
+      bottom: 18px;
+      transform: translateX(-50%);
+      max-width: 90vw;
+      color: rgba(255,255,255,.9);
+      font-size: .9rem;
+      text-align: center;
+    }
+
+    body.lightbox-open {
+      overflow: hidden;
+    }
+
+    @media (max-width: 600px) {
+      .image-lightbox {
+        padding: 18px;
+      }
+
+      .image-lightbox img {
+        max-width: 96vw;
+        max-height: 82vh;
+        border-radius: 9px;
+      }
+
+      .image-lightbox-close {
+        top: 12px;
+        right: 12px;
+        width: 42px;
+        height: 42px;
+        font-size: 27px;
+      }
+
+      .image-lightbox-caption {
+        bottom: 10px;
+        font-size: .78rem;
+      }
+
+      .project-image-button::after {
+        display: none;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+  <nav>
+    <div class="container nav-inner">
+      <a class="brand" href="#home">Mr. <span>L</span></a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Open navigation" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+        <div class="nav-links" id="navLinks">
+        <a href="#services">Services</a>
+        <a href="#projects">Projects</a>
+        <a href="#about">About</a>
+        <a href="#process">Process</a>
+        <a class="nav-cta" href="#contact">Let's Talk</a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="home">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow">WEB & SOFTWARE SOLUTIONS</div>
+          <h1>Turning ideas into <span class="gradient">useful digital experiences.</span></h1>
+          <p class="hero-copy">
+            I build practical websites, applications, database-driven systems, and technical solutions
+            with a focus on usability, responsiveness, and clear implementation.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#projects">View My Work</a>
+            <a class="btn btn-ghost" href="#contact">Start a Project</a>
+          </div>
+        </div>
+
+        <div class="code-card" aria-label="Developer profile">
+          <div class="code-top">
+            <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+            <span class="code-title">dan-mamore / profile.js</span>
+          </div>
+          <div class="code-body">
+            <div class="code-line"><span class="k">const</span> developer = {</div>
+            <div class="code-line">&nbsp;&nbsp;name: <span class="s">"Dan Lester Mamore"</span>,</div>
+            <div class="code-line">&nbsp;&nbsp;focus: <span class="s">"Web & Software"</span>,</div>
+            <div class="code-line">&nbsp;&nbsp;approach: <span class="s">"Practical & User-focused"</span>,</div>
+            <div class="code-line">&nbsp;&nbsp;tools: [<span class="s">"Python"</span>, <span class="s">"JavaScript"</span>, <span class="s">"SQL"</span>],</div>
+            <div class="code-line">&nbsp;&nbsp;goal: <span class="s">"Build useful solutions"</span></div>
+            <div class="code-line">};</div>
+            <div class="availability"><span class="pulse"></span> Open to project opportunities</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="services">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-kicker">What I Can Build</div>
+          <h2>Practical solutions for real project needs.</h2>
+          <p>From a focused website to a custom application, I approach each project around its actual requirements.</p>
+        </div>
+
+        <div class="services">
+          <article class="service">
+            <div class="service-number">01</div>
+            <h3>Business Websites</h3>
+            <p>Responsive websites designed to present a business, service, portfolio, or organization professionally.</p>
+          </article>
+          <article class="service">
+            <div class="service-number">02</div>
+            <h3>Web Applications</h3>
+            <p>Interactive web solutions built around practical workflows, user needs, and maintainable features.</p>
+          </article>
+          <article class="service">
+            <div class="service-number">03</div>
+            <h3>Database Solutions</h3>
+            <p>Structured data solutions using relational databases and application-side data handling.</p>
+          </article>
+          <article class="service">
+            <div class="service-number">04</div>
+            <h3>Technical Solutions</h3>
+            <p>Technical troubleshooting, documentation, data handling, and support for digital systems.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-kicker">Selected Work</div>
+          <h2>Projects that show how I solve problems.</h2>
+          <p>A selection of academic, software, web, mobile, database, and game-development projects.</p>
+        </div>
+
+        <div class="projects">
+          <article class="project">
+        <button class="project-image project-image-button" type="button" aria-label="View FEU Roosevelt Interactive Virtual Experience image" data-project-image="images/feurive.png" data-project-title="FEU Roosevelt Interactive Virtual Experience"><img src="images/feurive.png" alt="FEU Roosevelt Interactive Virtual Experience" loading="lazy"></button>
+            <div class="project-index">01 / WEB EXPERIENCE</div>
+            <h3>FEU Roosevelt Interactive Virtual Experience</h3>
+            <p>Interactive web platform featuring a panoramic virtual tour, navigation controls, customizable avatar, mini-game, AI chatbot, location and information resources, calendar, and authenticated access.</p>
+            <div class="tags">
+              <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span>
+              <span class="tag">Bootstrap</span><span class="tag">React</span><span class="tag">ChatGPT API</span>
+            </div>
+          </article>
+
+          <article class="project">
+        <button class="project-image project-image-button" type="button" aria-label="View Pink N' Money image" onclick="openProjectImage(this)"><img src="images/pink-money.png" alt="Pink N' Money" loading="lazy"></button>
+            <div class="project-index">02 / DESKTOP APPLICATION</div>
+            <h3>Pink N' Money – Casino</h3>
+            <p>Desktop-based casino game application with multiple casino-style games, virtual betting, simulated GCash deposit and withdrawal, and MySQL-backed data handling.</p>
+            <div class="tags">
+              <span class="tag">Visual Basic</span><span class="tag">MySQL</span><span class="tag">XAMPP</span><span class="tag">Game Development</span>
+            </div>
+          </article>
+
+          <article class="project">
+        <button class="project-image project-image-button" type="button" aria-label="View Big Brain PH image" data-project-image="images/big-brain-ph.png" data-project-title="Big Brain PH"><img src="images/big-brain-ph.png" alt="Big Brain PH" loading="lazy"></button>
+            <div class="project-index">03 / MOBILE APPLICATION</div>
+            <h3>Big Brain PH (BBP)</h3>
+            <p>Android quiz game focused on Philippine history, culture, and geography, featuring stage-based questions, increasing difficulty, multiple-choice interaction, and score tracking.</p>
+            <div class="tags">
+              <span class="tag">MIT App Inventor</span><span class="tag">Android</span><span class="tag">Firebase</span><span class="tag">Quiz Game</span>
+            </div>
+          </article>
+
+          <article class="project">
+        <button class="project-image project-image-button" type="button" aria-label="View Snake image" data-project-image="images/snake.png" data-project-title="Snake"><img src="images/snake.png" alt="Snake" loading="lazy"></button>
+            <div class="project-index">04 / 2D GAME</div>
+            <h3>Snake</h3>
+            <p>Classic Snake game recreated with Python and Pygame, including collision detection, dynamic speed increase, score tracking, game-over logic, and an OOP-based code structure.</p>
+            <div class="tags">
+              <span class="tag">Python</span><span class="tag">Pygame</span><span class="tag">OOP</span><span class="tag">2D Game Dev</span>
+            </div>
+          </article>
+
+          <article class="project">
+        <button class="project-image project-image-button" type="button" aria-label="View MaNiQuad image" data-project-image="images/maniquad.png" data-project-title="MaNiQuad"><img src="images/maniquad.png" alt="MaNiQuad" loading="lazy"></button>
+            <div class="project-index">05 / DESKTOP GAME</div>
+            <h3>MaNiQuad</h3>
+            <p>Multi-category desktop quiz and logic game featuring Sudoku, Guess the Philosopher, Guess the Place, and Guess the Philippine President.</p>
+            <div class="tags">
+              <span class="tag">Visual Basic</span><span class="tag">Windows Forms</span><span class="tag">.NET Framework</span><span class="tag">OOP</span>
+            </div>
+          </article>
+
+          <article class="project">
+        <button class="project-image project-image-button" type="button" aria-label="View JAPD image" onclick="openProjectImage(this)"><img src="images/japd.png" alt="JAPD" loading="lazy"></button>
+            <div class="project-index">06 / E-COMMERCE CONCEPT</div>
+            <h3>JAPD – Online Phone Shop</h3>
+            <p>E-commerce platform concept for browsing and ordering mobile phone products, with product filtering, authentication, order history, admin management, and validated checkout.</p>
+            <div class="tags">
+              <span class="tag">C++</span><span class="tag">MySQL</span><span class="tag">GUI</span><span class="tag">OOP</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-kicker">About</div>
+          <h2>A developer focused on the whole solution.</h2>
+        </div>
+
+        <div class="about-grid">
+          <aside class="about-profile">
+            <div>
+              <div class="profile-mark">Mr. L</div>
+              <div class="profile-name">Dan Lester Mamore</div>
+              <div class="profile-role">Information Technology Professional</div>
+              <div class="profile-meta">Software Development · Web · Databases · Technical Support</div>
+            </div>
+            <div class="stack">
+              <span class="tag">Python</span>
+              <span class="tag">JavaScript</span>
+              <span class="tag">HTML/CSS</span>
+              <span class="tag">SQL</span>
+              <span class="tag">REST APIs</span>
+            </div>
+          </aside>
+
+          <div class="about-content">
+            <h3><span>Building solutions with purpose.</span></h3>
+            <p>
+              I’m an Information Technology professional focused on turning ideas and requirements
+              into practical digital solutions.
+            </p>
+            <p>
+              My experience spans <strong>software development, web applications, databases,
+              technical support, documentation, and user-focused interfaces</strong>. I enjoy
+              breaking down complex requirements into manageable features and building solutions
+              that are functional, responsive, and easy to use.
+            </p>
+            <p>
+              Whether it’s a website, business application, database-driven system, or custom
+              software solution, I focus on understanding the actual problem first — then building
+              technology around the solution.
+            </p>
+
+            <div class="principles">
+              <div class="principle">
+                <strong>Practical thinking</strong>
+                <span>Focus on features that solve the actual requirement.</span>
+              </div>
+              <div class="principle">
+                <strong>User-focused</strong>
+                <span>Build interfaces that are clear and comfortable to use.</span>
+              </div>
+              <div class="principle">
+                <strong>Technical foundation</strong>
+                <span>Work across software, databases, web, and support.</span>
+              </div>
+              <div class="principle">
+                <strong>Documented work</strong>
+                <span>Keep implementation and technical information organized.</span>
+              </div>
+            </div>
+
+            <div class="stack">
+              <span class="tag">Web Development</span>
+              <span class="tag">Software Development</span>
+              <span class="tag">Database Systems</span>
+              <span class="tag">Technical Support</span>
+              <span class="tag">Responsive UI</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="process" class="process-section">
+      <div class="container">
+        <div class="process-head">
+          <div class="section-kicker">My Approach</div>
+          <h2>How I approach projects</h2>
+          <p>A straightforward process keeps the work focused, usable, and easier to maintain.</p>
+        </div>
+
+        <div class="process-grid">
+          <article class="step">
+            <div class="step-no">01</div>
+            <h3>Understand the Goal First</h3>
+            <p>Clarify the purpose, users, requirements, and expected result before building.</p>
+          </article>
+          <article class="step">
+            <div class="step-no">02</div>
+            <h3>Break the Problem into Practical Features</h3>
+            <p>Turn the overall requirement into clear, manageable features and tasks.</p>
+          </article>
+          <article class="step">
+            <div class="step-no">03</div>
+            <h3>Build a Responsive and Usable Interface</h3>
+            <p>Create an interface that works across screen sizes and remains easy to navigate.</p>
+          </article>
+          <article class="step">
+            <div class="step-no">04</div>
+            <h3>Test, Revise, and Document the Result</h3>
+            <p>Test the implementation, refine issues, and keep important technical details documented.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="contact-box">
+          <div>
+            <div class="section-kicker">Let's Work Together</div>
+            <h2>Have an idea that needs to become a working solution?</h2>
+            <p class="lead">
+              Tell me what you’re trying to build, what problem you want to solve, or what you need improved.
+              We can start from there.
+            </p>
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="mailto:danlestermamore12@gmail.com">Send an Email</a>
+            </div>
+          </div>
+
+          <div class="contact-list">
+            <a class="contact-item" href="mailto:danlestermamore12@gmail.com">
+              <div><div class="contact-label">Email</div><div class="contact-value">danlestermamore12@gmail.com</div></div>
+              <span class="email">↗</span>
+            </a>
+
+            <a class="contact-item" href="tel:+639948208866">
+              <div><div class="contact-label">Phone</div><div class="contact-value">+63 994 820 8866</div></div>
+              <span>↗</span>
+            </a>
+
+            <a class="contact-item" href="#" onclick="openViber(event)">
+              <div><div class="contact-label">Viber</div><div class="contact-value">+63 915 294 9916</div></div>
+              <span class="viber">↗</span>
+            </a>
+
+            <a class="contact-item" href="https://wa.me/639948208866" target="_blank" rel="noopener">
+              <div><div class="contact-label">WhatsApp</div><div class="contact-value">+63 994 820 8866</div></div>
+              <span class="whatsapp">↗</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <div>© 2026 Dan Mamore. All rights reserved.</div>
+      <div>Web & Software Solutions</div>
+    </div>
+  </footer>
+
+  <div class="modal" id="viberModal" role="dialog" aria-modal="true" aria-labelledby="viberTitle">
+    <div class="modal-card">
+      <h3 id="viberTitle">Connect on Viber</h3>
+      <p>If Viber did not open automatically, save or copy this number and start a chat from the Viber app.</p>
+      <div class="viber-number" id="viberNumber">+63 915 294 9916</div>
+      <div class="modal-actions">
+        <button class="btn btn-primary" onclick="copyViber()">Copy Number</button>
+        <button class="btn btn-ghost" onclick="closeViber()">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+
+    const menuToggle = document.getElementById("menuToggle");
+    const navLinks = document.getElementById("navLinks");
+
+    if (menuToggle && navLinks) {
+      menuToggle.addEventListener("click", () => {
+        const open = navLinks.classList.toggle("open");
+        menuToggle.setAttribute("aria-expanded", open ? "true" : "false");
+        menuToggle.setAttribute("aria-label", open ? "Close navigation" : "Open navigation");
+      });
+
+      navLinks.querySelectorAll("a").forEach(link => {
+        link.addEventListener("click", () => {
+          navLinks.classList.remove("open");
+          menuToggle.setAttribute("aria-expanded", "false");
+          menuToggle.setAttribute("aria-label", "Open navigation");
+        });
+      });
+    }
+
+    function openViber(event){
+      event.preventDefault();
+
+      const number = "639152949916";
+
+      // Try the Viber deep link. Browsers may block custom app protocols,
+      // so a fallback dialog is shown after a short delay.
+      let fallbackShown = false;
+      const showFallback = () => {
+        if (!fallbackShown) {
+          fallbackShown = true;
+          document.getElementById("viberModal").classList.add("open");
+        }
+      };
+
+      const timer = setTimeout(showFallback, 900);
+
+      window.location.href = "viber://chat?number=%2B" + number;
+
+      // If the browser leaves the page for Viber, this page will be hidden.
+      window.addEventListener("pagehide", () => clearTimeout(timer), {once:true});
+    }
+
+    function closeViber(){
+      document.getElementById("viberModal").classList.remove("open");
+    }
+
+    function copyViber(){
+      const number = "+63 915 294 9916";
+      navigator.clipboard.writeText(number).then(() => {
+        const button = event.currentTarget;
+        const old = button.textContent;
+        button.textContent = "Copied!";
+        setTimeout(() => button.textContent = old, 1400);
+      }).catch(() => {
+        alert("Viber number: " + number);
+      });
+    }
+
+    document.getElementById("viberModal").addEventListener("click", function(e){
+      if(e.target === this) closeViber();
+    });
+  </script>
+
+  <!-- Project image lightbox -->
+  <div class="project-lightbox" id="projectLightbox" role="dialog"
+       aria-modal="true" aria-labelledby="projectLightboxTitle" aria-hidden="true">
+    <button class="project-lightbox-close" id="projectLightboxClose"
+            type="button" aria-label="Close image viewer">&times;</button>
+    <div class="project-lightbox-content">
+      <img class="project-lightbox-image" id="projectLightboxImage" src="" alt="">
+      <p class="project-lightbox-title" id="projectLightboxTitle"></p>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      const lightbox = document.getElementById('projectLightbox');
+      const lightboxImage = document.getElementById('projectLightboxImage');
+      const lightboxTitle = document.getElementById('projectLightboxTitle');
+      const closeButton = document.getElementById('projectLightboxClose');
+      const projectButtons = document.querySelectorAll('.project-image-button');
+
+      let lastFocusedElement = null;
+
+      function openLightbox(button) {
+        lastFocusedElement = document.activeElement;
+        lightboxImage.src = button.dataset.projectImage;
+        lightboxImage.alt = button.dataset.projectTitle || 'Project image';
+        lightboxTitle.textContent = button.dataset.projectTitle || '';
+        lightbox.classList.add('is-open');
+        lightbox.setAttribute('aria-hidden', 'false');
+        document.body.classList.add('lightbox-open');
+        closeButton.focus();
+      }
+
+      function closeLightbox() {
+        lightbox.classList.remove('is-open');
+        lightbox.setAttribute('aria-hidden', 'true');
+        document.body.classList.remove('lightbox-open');
+        lightboxImage.src = '';
+
+        if (lastFocusedElement) {
+          lastFocusedElement.focus();
+        }
+      }
+
+      projectButtons.forEach(function (button) {
+        button.addEventListener('click', function () {
+          openLightbox(button);
+        });
+      });
+
+      closeButton.addEventListener('click', closeLightbox);
+
+      lightbox.addEventListener('click', function (event) {
+        if (event.target === lightbox) {
+          closeLightbox();
+        }
+      });
+
+      document.addEventListener('keydown', function (event) {
+        if (event.key === 'Escape' && lightbox.classList.contains('is-open')) {
+          closeLightbox();
+        }
+      });
+    })();
+  </script>
+
+
+  <!-- Project image lightbox -->
+  <div class="image-lightbox" id="projectImageLightbox" role="dialog"
+       aria-modal="true" aria-label="Project image preview" aria-hidden="true">
+    <button class="image-lightbox-close" type="button"
+            aria-label="Close image preview" onclick="closeProjectImage()">×</button>
+    <img id="projectLightboxImage" src="" alt="">
+    <div class="image-lightbox-caption" id="projectLightboxCaption"></div>
+  </div>
+
+  <script>
+    const projectLightbox = document.getElementById('projectImageLightbox');
+    const projectLightboxImage = document.getElementById('projectLightboxImage');
+    const projectLightboxCaption = document.getElementById('projectLightboxCaption');
+
+    function openProjectImage(button) {
+      const image = button.querySelector('img');
+      if (!image) return;
+
+      projectLightboxImage.src = image.src;
+      projectLightboxImage.alt = image.alt || 'Project image';
+      projectLightboxCaption.textContent = image.alt || '';
+
+      projectLightbox.classList.add('is-open');
+      projectLightbox.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('lightbox-open');
+
+      projectLightbox.querySelector('.image-lightbox-close').focus();
+    }
+
+    function closeProjectImage() {
+      projectLightbox.classList.remove('is-open');
+      projectLightbox.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('lightbox-open');
+      projectLightboxImage.src = '';
+      projectLightboxCaption.textContent = '';
+    }
+
+    projectLightbox.addEventListener('click', function(event) {
+      if (event.target === projectLightbox) {
+        closeProjectImage();
+      }
+    });
+
+    document.addEventListener('keydown', function(event) {
+      if (event.key === 'Escape' && projectLightbox.classList.contains('is-open')) {
+        closeProjectImage();
+      }
+    });
+  </script>
+
+</body>
+</html>
