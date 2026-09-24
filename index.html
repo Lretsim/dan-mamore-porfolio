@@ -6,6 +6,12 @@
   <meta name="description" content="Dan Mamore — Web & Software Solutions portfolio. Practical, responsive and user-focused digital solutions.">
   <title>Dan Mamore | Web & Software Solutions</title>
 
+  <!-- Vercel Web Analytics -->
+  <script>
+    window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+  </script>
+  <script defer src="/_vercel/insights/script.js"></script>
+
   <style>
     :root{
       --bg:#07111f;
@@ -723,9 +729,9 @@
 
         <div class="projects">
           <article class="project">
-        <button class="project-image project-image-button" type="button" aria-label="View FEU Roosevelt Interactive Virtual Experience image" data-project-image="feurive.png" data-project-title="FEU Roosevelt Interactive Virtual Experience"><img src="feurive.png" alt="FEU Roosevelt Interactive Virtual Experience" loading="lazy"></button>
+        <button class="project-image project-image-button" type="button" aria-label="View FEURive Interactive Virtual Experience image" data-project-image="feurive.png" data-project-title="FEURive Interactive Virtual Experience"><img src="feurive.png" alt="FEURive Interactive Virtual Experience" loading="lazy"></button>
             <div class="project-index">01 / WEB EXPERIENCE</div>
-            <h3>FEU Roosevelt Interactive Virtual Experience</h3>
+            <h3>FEURive Interactive Virtual Experience</h3>
             <p>Interactive web platform featuring a panoramic virtual tour, navigation controls, customizable avatar, mini-game, AI chatbot, location and information resources, calendar, and authenticated access.</p>
             <div class="tags">
               <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span>
@@ -734,7 +740,7 @@
           </article>
 
           <article class="project">
-        <button class="project-image project-image-button" type="button" aria-label="View Pink N' Money image" onclick="openProjectImage(this)"><img src="pink-money.png" alt="Pink N' Money" loading="lazy"></button>
+        <button class="project-image project-image-button" type="button" aria-label="View Pink N' Money image" onclick="openProjectImage(this)"><img src="pink-n-money.png" alt="Pink N' Money" loading="lazy"></button>
             <div class="project-index">02 / DESKTOP APPLICATION</div>
             <h3>Pink N' Money – Casino</h3>
             <p>Desktop-based casino game application with multiple casino-style games, virtual betting, simulated GCash deposit and withdrawal, and MySQL-backed data handling.</p>
@@ -935,7 +941,7 @@
 
   <footer>
     <div class="container footer-inner">
-      <div>© 2026 Dan Lester Mamore. All rights reserved.</div>
+      <div>© 2026 Dan Mamore. All rights reserved.</div>
       <div>Web & Software Solutions</div>
     </div>
   </footer>
@@ -973,8 +979,34 @@
       });
     }
 
+
+    // Track contact-button clicks in Vercel Web Analytics.
+    // Custom events require Vercel Web Analytics custom-event support.
+    function trackContactClick(method) {
+      if (typeof window.va === "function") {
+        window.va("event", {
+          name: "contact_click",
+          method: method
+        });
+      }
+    }
+
+    // Track all direct contact links without changing their normal behavior.
+    document.querySelectorAll('a[href^="mailto:"]').forEach(link => {
+      link.addEventListener("click", () => trackContactClick("email"));
+    });
+
+    document.querySelectorAll('a[href^="tel:"]').forEach(link => {
+      link.addEventListener("click", () => trackContactClick("phone"));
+    });
+
+    document.querySelectorAll('a[href*="wa.me/"]').forEach(link => {
+      link.addEventListener("click", () => trackContactClick("whatsapp"));
+    });
+
     function openViber(event){
       event.preventDefault();
+      trackContactClick("viber");
 
       const number = "639152949916";
 
